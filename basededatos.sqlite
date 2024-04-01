@@ -1,0 +1,52 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 01-04-2024 a las 01:04:27
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `registro`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos_usuario`
+--
+
+CREATE TABLE `datos_usuario` (
+  `nombre` varchar(50) NOT NULL,
+  `edad` int(11) NOT NULL,
+  `genero` varchar(50) NOT NULL,
+  `pelicula_favorita` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `datos_usuario`
+--
+
+INSERT INTO `datos_usuario` (`nombre`, `edad`, `genero`, `pelicula_favorita`) VALUES
+('dddd', 4, 'femenino', 3),
+('', 0, '', 0),
+('ehd', 10, 'masculino', 0),
+('dante', 4, 'femenino', 0),
+('d', 3, 'femenino', 0),
+('e', 3, 'masculino', 0);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
