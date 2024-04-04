@@ -50,24 +50,10 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-
-        /* Estilo para el mensaje emergente */
-        .mensaje {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body>
-    <form id="formulario" action="procesar.php" method="POST">
+    <form action="guardar_datos.php" method="POST">
         <h2>Ingresa tus datos</h2>
         <label for="nombre">Nombre Completo:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
@@ -87,18 +73,5 @@
         
         <input type="submit" value="Enviar">
     </form>
-
-    <!-- Mensaje emergente -->
-    <div id="mensaje" class="mensaje">¡Datos agregados correctamente!</div>
-
-    <script>
-        // Mostrar mensaje emergente al enviar el formulario
-        document.getElementById("formulario").addEventListener("submit", function() {
-            document.getElementById("mensaje").style.display = "block";
-            setTimeout(function() {
-                document.getElementById("mensaje").style.display = "none";
-            }, 3000); // El mensaje se ocultará después de 3 segundos (3000 milisegundos)
-        });
-    </script>
 </body>
 </html>
