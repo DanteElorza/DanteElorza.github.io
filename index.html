@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-    <form action="procesar.php" method="POST">
+    <form id="myForm">
         <h2>Ingresa tus datos</h2>
         <label for="nombre">Nombre Completo:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
@@ -74,5 +74,12 @@
         <input type="submit" value="Enviar">
     </form>
 
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event){
+            event.preventDefault(); // Evitar el envío del formulario
+            alert("¡Los datos se han enviado correctamente!");
+            window.location.href = "index.html"; // Redirigir a index.html
+        });
+    </script>
 </body>
 </html>
