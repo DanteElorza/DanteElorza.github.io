@@ -1,27 +1,33 @@
 <?php
-// Recibir datos del formulario
-$nombre = $_POST['nombre'];
-$edad = $_POST['edad'];
-$genero = $_POST['genero'];
-$pelicula = $_POST['pelicula'];
+// Conexión a la base de datos SQLite
+try {
+    $db = new PDO('sqlite:basededatos.sqlite');
+} catch (PDOException $e) {
+    echo 'Error al conectarse a la base de datos: ' . $e->getMessage();
+    die();
+}
 
-// Abrir la conexión a la base de datos SQLite
-$db = new SQLite3('datos.db');
+// Obtener datos del formulario
+$nombre = $_POST['nombre'] ?? '';
+$edad = $_POST['edad'] ?? 0;
+$genero = $_POST['genero'] ?? '';
+$pelicula = $_POST['pelicula'] ?? '';
 
-// Crear tabla si no existe
-$db->exec('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, edad INTEGER, genero TEXT, pelicula TEXT)');
+// Insertar datos en la tabla usuarios
+$query = "INSERT INTO usuarios (nombre, edad, genero, pelicula) VALUES (:nombre, :edad, :genero, :pelicula)";
+$statement = $db->prepare($query);
+$statement->bindParam(':nombre', $nombre);
+$statement->bindParam(':edad', $edad);
+$statement->bindParam(':genero', $genero);
+$statement->bindParam(':pelicula', $pelicula);
+$result = $statement->execute();
 
-// Insertar datos en la tabla
-$stmt = $db->prepare('INSERT INTO usuarios (nombre, edad, genero, pelicula) VALUES (:nombre, :edad, :genero, :pelicula)');
-$stmt->bindValue(':nombre', $nombre, SQLITE3_TEXT);
-$stmt->bindValue(':edad', $edad, SQLITE3_INTEGER);
-$stmt->bindValue(':genero', $genero, SQLITE3_TEXT);
-$stmt->bindValue(':pelicula', $pelicula, SQLITE3_TEXT);
-$stmt->execute();
+if ($result) {
+    echo 'Datos guardados correctamente en la base de datos.';
+} else {
+    echo 'Error al guardar los datos en la base de datos.';
+}
 
-// Cerrar la conexión
-$db->close();
-
-// Redireccionar a la página de éxito
-header('Location: exito.html');
+// Cerrar la conexión a la base de datos
+$db = null;
 ?>
